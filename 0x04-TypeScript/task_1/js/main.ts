@@ -9,13 +9,42 @@ interface Teacher {
     [key: string]: any; // To allow additional properties
 }
 
-// Example usage
-const teacher3: Teacher = {
-    firstName: 'John',
-    fullTimeEmployee: false,
-    lastName: 'Doe',
-    location: 'London',
-    contract: false,
+interface Directors extends Teacher {
+    numberOfReports: number;
+}
+
+interface printTeacheinterface StudentClassConstructor {
+    new (firstName: string, lastName: string): StudentClassInterface;
+}
+
+interface StudentClassInterface {
+    workOnHomework(): string;
+    displayName(): string;
+}
+
+class StudentClass implements StudentClassInterface {
+    firstName: string;
+    lastName: string;
+
+    constructor(firstName: string, lastName: string) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
+
+    workOnHomework(): string {
+        return 'Currently working';
+    }
+
+    displayName(): string {
+        return this.firstName;
+    }
+}
+rFunction {
+    (firstName: string, lastName: string): string;
+}
+
+const printTeacher: printTeacherFunction = (firstName, lastName) => {
+    return `${firstName.charAt(0)}. ${lastName}`;
 };
 
-console.log(teacher3);
+
