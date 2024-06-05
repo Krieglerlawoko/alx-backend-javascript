@@ -1,20 +1,22 @@
 import Car from './10-car.js';
 
-const _range = Symbol('range');
-
-export default class EVCar extends Car {
+class EVCar extends Car {
   constructor(brand, motor, color, range) {
-    super(brand, motor, color);
-    this[_range] = range;
+    super();
+    this._brand = brand;
+    this._motor = motor;
+    this._color = color;
+    this._range = range;
   }
 
-  get range() {
-    return this[_range];
-  }
-
-  // Override the cloneCar method
   cloneCar() {
-    // Create a new Car object with the same attributes
-    return new Car(this.brand, this.motor, this.color);
+    // Create a new Car instance with the same attributes
+    const carClone = new Car();
+    carClone._brand = this._brand;
+    carClone._motor = this._motor;
+    carClone._color = this._color;
+    return carClone;
   }
 }
+
+export default EVCar;
