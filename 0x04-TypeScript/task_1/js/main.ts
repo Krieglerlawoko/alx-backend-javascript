@@ -30,7 +30,7 @@ const director1: Directors = {
 };
 console.log(director1);
 
-interface printTeacherFunction {
+interface PrintTeacherFunction {
   (firstName: string, lastName: string): string;
 }
 
