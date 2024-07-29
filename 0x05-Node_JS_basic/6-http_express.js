@@ -1,11 +1,24 @@
-// 6-http_express.js
 const express = require('express');
+
+// Initialize the Express application
 const app = express();
+const PORT = 1245;
 
-app.get('/', (req, res) => {
-    res.send('Hello Holberton School!');
+/**
+ * Handles GET requests to the root URL.
+ * @param {express.Request} req - The request object.
+ * @param {express.Response} res - The response object.
+ */
+const handleRootRequest = (req, res) => {
+  res.status(200).send('Hello Holberton School!');
+};
+
+// Define routes
+app.get('/', handleRootRequest);
+
+// Start the server
+app.listen(PORT, () => {
+  console.log(`Server is running on http://localhost:${PORT}`);
 });
-
-app.listen(1245);
 
 module.exports = app;

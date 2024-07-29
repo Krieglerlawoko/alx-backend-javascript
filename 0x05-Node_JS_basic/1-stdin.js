@@ -1,18 +1,21 @@
-// 1-stdin.js
-const readline = require('readline');
+// Import the 'process' module
+const { stdout, stdin } = require('process');
 
-const rl = readline.createInterface({
-    input: process.stdin,
-    output: process.stdout
+// Prompt the user for their name
+stdout.write('Welcome to Holberton School, what is your name?\n');
+
+// Handle user input
+stdin.on('data', (data) => {
+    const name = data.toString().trim(); // Convert the input to a string and trim whitespace
+    stdout.write(`Your name is: ${name}\n`);
 });
 
-console.log('Welcome to Holberton School, what is your name?');
-
-rl.on('line', (input) => {
-    console.log(`Your name is: ${input}`);
-    rl.close();
+// Handle the end of input stream
+stdin.on('end', () => {
+    stdout.write('This important software is now closing\n');
 });
 
-rl.on('close', () => {
-    console.log('This important software is now closing');
+// Handle possible errors
+stdin.on('error', (err) => {
+    console.error('An error occurred:', err);
 });
