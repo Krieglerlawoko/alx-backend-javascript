@@ -1,21 +1,17 @@
-// Import the 'process' module
-const { stdout, stdin } = require('process');
+/**
+ * Prompts the user for their name and outputs the response.
+ * @function
+ */
+process.stdout.write('Welcome to Holberton School, what is your name?\n');
 
-// Prompt the user for their name
-stdout.write('Welcome to Holberton School, what is your name?\n');
+process.stdin.on('readable', () => {
+  const inputChunk = process.stdin.read();
 
-// Handle user input
-stdin.on('data', (data) => {
-    const name = data.toString().trim(); // Convert the input to a string and trim whitespace
-    stdout.write(`Your name is: ${name}\n`);
+  if (inputChunk) {
+    process.stdout.write(`Your name is: ${inputChunk}`);
+  }
 });
 
-// Handle the end of input stream
-stdin.on('end', () => {
-    stdout.write('This important software is now closing\n');
-});
-
-// Handle possible errors
-stdin.on('error', (err) => {
-    console.error('An error occurred:', err);
+process.stdin.on('end', () => {
+  process.stdout.write('This important software is now closing\n');
 });
