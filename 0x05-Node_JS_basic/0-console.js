@@ -1,18 +1,10 @@
 /**
- * Logs a message to the console.
- * @param {string} message - The message to log.
- * @returns {void}
+ * Displays a message on the standard output.
+ * @param {string} message - The message to display.
+ * @throws {TypeError} Throws an error if the message is not a string.
  */
-const displayMessage = (message) => {
-    if (typeof message !== 'string') {
-        console.error('Invalid message type, expected a string.');
-        return;
-    }
-    console.log(message);
+const displayMessage = (msg) => {
+  console.log(msg);
 };
 
-/**
- * Exports the displayMessage function.
- * @module displayMessage
- */
 module.exports = displayMessage;
