@@ -1,28 +1,24 @@
 const http = require('http');
 
+// Define constants for the server configuration
 const PORT = 1245;
 const HOST = 'localhost';
+const app = http.createServer();
 
-/**
- * Handles incoming requests and sends a response.
- * @param {http.IncomingMessage} req - The incoming request.
- * @param {http.ServerResponse} res - The outgoing response.
- */
-const requestHandler = (req, res) => {
-    const responseText = 'Hello Holberton School!';
-    
-    res.writeHead(200, {
-        'Content-Type': 'text/plain',
-        'Content-Length': Buffer.byteLength(responseText)
-    });
-    res.end(responseText);
-};
+// Create the HTTP server
+app.on('request', (_, res) => {
+  const responseMessage = 'Hello Holberton School!';
 
-// Create and start the server
-const server = http.createServer(requestHandler);
-
-server.listen(PORT, HOST, () => {
-    console.log(`Server listening at http://${HOST}:${PORT}`);
+  // Set response headers
+  res.setHeader('Content-Type', 'text/plain');
+  res.setHeader('Content-Length', responseMessage.length);
+  // Set response status code
+  res.statusCode = 200;
+  res.write(Buffer.from(responseMessage));
 });
 
-module.exports = server;
+app.listen(PORT, HOST, () => {
+  process.stdout.write(`Server listening at -> http://${HOST}:${PORT}\n`);
+});
+
+module.exports = app;
